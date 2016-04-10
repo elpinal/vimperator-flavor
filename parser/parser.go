@@ -8,8 +8,8 @@ import (
 )
 
 type Repo struct {
-	path    string
-	version string
+	Path    string
+	Version string
 }
 
 func ParseFile(name string) ([]Repo, error) {
@@ -31,9 +31,9 @@ func Parse(r io.Reader) ([]Repo, error) {
 		}
 		if i := strings.Index(txt, " "); i > 0 {
 			ver := strings.TrimSpace(txt[i+1:])
-			repos = append(repos, Repo{path: txt[:i], version: ver})
+			repos = append(repos, Repo{Path: txt[:i], Version: ver})
 		} else {
-			repos = append(repos, Repo{path: txt})
+			repos = append(repos, Repo{Path: txt})
 		}
 	}
 	if err := s.Err(); err != nil {
