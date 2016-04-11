@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"os/user"
@@ -42,6 +43,26 @@ func runInstall(args []string) int {
 		return 1
 	}
 	flavorsRoot := usr.HomeDir + "/.vimperator/flavors"
+
+	if _, err := os.Stat(flavorsRoot + "/bootstrap.js"); err != nil {
+		data := []byte(`
+		(function() {
+			let rtps = options.runtimepath.split(",");
+			let flavorDirs = [];
+			for (let dir in io.File("~/.vimperator/flavors").iterDirectory()) {
+				if (!dir.isDirectory()) {
+					continue;
+				}
+				flavorDirs.push(dir.path);
+			}
+			let newRtps = rtps.concat(flavorDirs);
+			options.runtimepath = newRtps.join(",");
+		})();`)
+		if err := ioutil.WriteFile(flavorsRoot+"/bootstrap.js", data, 0644); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			return 1
+		}
+	}
 
 	for _, repo := range repos {
 		if _, err := os.Stat(srcRoot + "/" + repo.Path); err != nil {
