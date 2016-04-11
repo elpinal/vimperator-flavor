@@ -47,6 +47,10 @@ func runInstall(args []string) int {
 	if _, err := os.Stat(flavorsRoot + "/bootstrap.js"); err != nil {
 		data := []byte(`
 		(function() {
+			if (liberator.globalVariables.loaded_my_flavors == "true") {
+				return;
+			}
+
 			let rtps = options.runtimepath.split(",");
 			let flavorDirs = [];
 			for (let dir in io.File("~/.vimperator/flavors").iterDirectory()) {
