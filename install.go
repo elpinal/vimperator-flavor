@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/susp/vimperator-flavor/parser"
+	"github.com/elpinal/vimperator-flavor/parser"
 )
 
 var cmdInstall = &Command{

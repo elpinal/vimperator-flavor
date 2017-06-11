@@ -11,12 +11,12 @@
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/susp/vimperator-flavor
+$ go get -d github.com/elpinal/vimperator-flavor
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/susp/vimperator-flavor/fork](https://github.com/susp/vimperator-flavor/fork))
+1. Fork ([https://github.com/elpinal/vimperator-flavor/fork](https://github.com/elpinal/vimperator-flavor/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch
@@ -26,4 +26,4 @@ $ go get -d github.com/susp/vimperator-flavor
 
 ## Author
 
-[susp](https://github.com/susp)
+[elpinal](https://github.com/elpinal)
